@@ -32,6 +32,21 @@ app.get("/exercises", (req, res) => {
         })
 })
 
+app.put("/exercises/:_id", (req, res) => {
+    const exerciseId = req.params._id;
+    console.log(`Updating ${exerciseId} \nwith: ${req.body}`);
+    exercise.updateExercise(exerciseId, req.body)
+        .then(updatedExercise => {
+            console.log(updatedExercise);
+            res.status(200).json(updatedExercise);
+        })
+        .catch(error => {
+            console.error(error)
+            res.status(500).json({ Error: 'Update failed' });
+        });
+})
+
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}...`)
+
 });

@@ -33,4 +33,14 @@ const getExercise = async () => {
     return query.exec();
 }
 
-export {createExercise, getExercise}
+const updateExercise = async (_id, updates) => {
+    const result = await Exercise.findOneAndUpdate({_id: _id}, 
+        updates,
+        { new: true} )
+    if (result === null) {
+        throw Error("id not found")
+    }
+    return result;
+}
+
+export {createExercise, getExercise, updateExercise}
