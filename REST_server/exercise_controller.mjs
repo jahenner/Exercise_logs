@@ -46,6 +46,20 @@ app.put("/exercises/:_id", (req, res) => {
         });
 })
 
+app.delete("/exercises/:_id", (req, res) => {
+    const exerciseId = req.params._id;
+    console.log(`Deleting: ${exerciseId}`);
+    exercise.deleteExercise(exerciseId)
+        .then((deletedCount) => {
+            console.log('Delete successful');
+            res.status(204).json({ DeletedCount: deletedCount});
+        })
+        .catch(error => {
+            console.error(error)
+            res.status(500).json({ Error: 'Deletion failed' })
+        })
+})
+
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}...`)
 

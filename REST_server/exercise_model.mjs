@@ -43,4 +43,12 @@ const updateExercise = async (_id, updates) => {
     return result;
 }
 
-export {createExercise, getExercise, updateExercise}
+const deleteExercise = async (_id) => {
+    const result = await Exercise.deleteOne({_id: _id});
+    if (result.deletedCount === 0) {
+        throw Error("id not found")
+    }
+    return result.deletedCount;
+}
+
+export {createExercise, getExercise, updateExercise, deleteExercise}
