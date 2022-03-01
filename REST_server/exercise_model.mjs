@@ -19,4 +19,9 @@ const exerciseSchema = mongoose.Schema({
     date: {type: String, required: true},
 });
 
-const Exercises = mongoose.model("exercises", exerciseSchema);
+const Exercise = mongoose.model("exercises", exerciseSchema);
+
+const createExercise = async (name, reps, weight, unit, date) => {
+    const exercise = new Exercise({ name: name, reps: reps, weight: weight, unit: unit, date: date });
+    return exercise.save();
+};
