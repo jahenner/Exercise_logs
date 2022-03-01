@@ -25,3 +25,12 @@ const createExercise = async (name, reps, weight, unit, date) => {
     const exercise = new Exercise({ name: name, reps: reps, weight: weight, unit: unit, date: date });
     return exercise.save();
 };
+
+const getExercise = async () => {
+    const query = Exercise.find({})
+        .select('')
+        .limit(0);
+    return query.exec();
+}
+
+export {createExercise, getExercise}
