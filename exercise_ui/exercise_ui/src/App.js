@@ -4,13 +4,19 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import AddPage from './pages/CreatePage';
 import EditPage from './pages/EditPage';
+import Navigation from './components/Navigation';
 
 function App() {
   const [exerciseToEdit, setExerciseToEdit] = useState();
   return (
     <div className="App">
       <Router>
-        <div className="App-header">
+        <header className="App-header">
+          <h1>My personal exercise log</h1>
+          <p>A place where you can keep track of all of your exercises</p>
+        </header>
+        <Navigation />
+        <main className="App-main">
           <Route path="/" exact>
             <HomePage setExerciseToEdit={setExerciseToEdit} />
           </Route>
@@ -20,7 +26,10 @@ function App() {
           <Route path="/edit-exercise">
             <EditPage exerciseToEdit={exerciseToEdit} />
           </Route>
-        </div>
+        </main>
+        <footer className="App-footer">
+          <p>&copy; 2022 Alex Henner</p>
+        </footer>
       </Router>
     </div>
   );
