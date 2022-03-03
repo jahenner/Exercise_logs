@@ -2,6 +2,8 @@ import * as exercise from "./exercise_model.mjs";
 import express, { application } from 'express';
 const app = express();
 
+app.use(express.static('public'));
+
 app.use(express.urlencoded({
     extended: true
 }));
